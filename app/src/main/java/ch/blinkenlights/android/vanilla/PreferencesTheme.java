@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceScreen;
+import android.graphics.drawable.Drawable;
 
 
 public class PreferencesTheme extends PreferenceFragment
@@ -97,6 +98,9 @@ public class PreferencesTheme extends PreferenceFragment
 		}
 
 		Drawable d = new BitmapDrawable(mContext.getResources(), bitmap);
+		if (bitmap != null) {
+			bitmap.recycle();
+		}
 		return d;
 	}
 

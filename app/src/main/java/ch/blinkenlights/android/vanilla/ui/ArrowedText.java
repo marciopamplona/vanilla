@@ -28,6 +28,8 @@ import android.graphics.Paint;
 import android.graphics.drawable.PaintDrawable;
 import android.graphics.Path;
 import android.widget.TextView;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 
 public class ArrowedText extends TextView {
 	/**
@@ -99,14 +101,12 @@ public class ArrowedText extends TextView {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		Paint paint = new Paint();
 		paint.setColor(mArrowColor);
 		paint.setAntiAlias(true);
 		paint.setStyle(Paint.Style.FILL_AND_STROKE);
 
 		int h = canvas.getHeight();
 	    float m = h/2.0f;
-		Path path = new Path();
 		path.moveTo(0, 0);
 		path.lineTo(mArrowPadding, 0);
 		path.lineTo(mArrowPadding + mArrowWidth, m);
@@ -117,4 +117,8 @@ public class ArrowedText extends TextView {
 		canvas.drawPath(path, paint);
 		super.onDraw(canvas);
 	}
+
+	private Paint paint = new android.graphics.Paint();
+
+	private Path path = new android.graphics.Path();
 }

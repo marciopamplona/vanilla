@@ -44,6 +44,21 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
+import android.view.LayoutInflater;
+import android.provider.BaseColumns;
+import java.util.ArrayList;
+import android.content.Intent;
+import android.view.ViewGroup;
+import java.util.Date;
+import android.database.DatabaseUtils;
+import java.text.SimpleDateFormat;
+import android.widget.SectionIndexer;
+import android.provider.MediaStore;
+import android.view.View;
+import java.util.List;
+import java.util.Arrays;
+import ch.blinkenlights.android.medialibrary.MediaLibrary;
+import android.database.Cursor;
 
 
 /**
@@ -457,6 +472,9 @@ public class MediaAdapter
 		default:
 			throw new IllegalStateException("getLimiter() is not supported for media type: " + mType);
 		}
+		if (cursor != null) {
+			cursor.close();
+		}
 
 		return new Limiter(mType, fields, data);
 	}
@@ -539,6 +557,9 @@ public class MediaAdapter
 		case MediaUtils.TYPE_PLAYLIST:
 			duration = cursor.getLong(3);
 			break;
+		}
+		if (cursor != null) {
+			cursor.close();
 		}
 
 		holder.id = id;
@@ -623,6 +644,9 @@ public class MediaAdapter
 		if (cursor == null)
 			return 0;
 		return cursor.getCount();
+		if (cursor != null) {
+			cursor.close();
+		}
 	}
 
 	@Override
@@ -639,6 +663,9 @@ public class MediaAdapter
 			return 0;
 		cursor.moveToPosition(position);
 		return cursor.getLong(0);
+		if (cursor != null) {
+			cursor.close();
+		}
 	}
 
 	@Override
@@ -747,6 +774,9 @@ public class MediaAdapter
 				lastKnown = next;
 			}
 		} while (cursor.moveToNext());
+		if (cursor != null) {
+			cursor.close();
+		}
 	}
 
 	@Override

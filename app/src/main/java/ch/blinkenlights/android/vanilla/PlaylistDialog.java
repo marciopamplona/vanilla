@@ -30,6 +30,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.app.Dialog;
+import android.content.Intent;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
+import android.database.Cursor;
 
 public class PlaylistDialog extends DialogFragment
 	implements DialogInterface.OnClickListener
@@ -108,6 +113,9 @@ public class PlaylistDialog extends DialogFragment
 			cursor.moveToPosition(i);
 			mItemValue[1+i] = cursor.getLong(0);
 			mItemName[1+i] = cursor.getString(1);
+		}
+		if (cursor != null) {
+			cursor.close();
 		}
 
 		// All names are now known: we can show the dialog

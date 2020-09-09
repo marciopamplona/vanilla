@@ -32,6 +32,11 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 
 import androidx.annotation.Nullable;
+import java.util.ArrayList;
+import android.text.TextUtils;
+import android.content.ContentValues;
+import ch.blinkenlights.android.medialibrary.MediaLibrary;
+import android.database.Cursor;
 
 /**
  * Provides various playlist-related utility functions.
@@ -133,6 +138,9 @@ public class Playlist {
 			while (cursor.moveToNext()) {
 				result.add(cursor.getLong(0));
 			}
+		}
+		if (cursor != null) {
+			cursor.close();
 		}
 		return addToPlaylist(context, playlistId, result);
 	}

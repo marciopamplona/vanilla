@@ -40,6 +40,7 @@ import java.lang.IllegalStateException;
 import java.lang.IllegalArgumentException;
 
 import android.util.Log;
+import java.lang.IllegalArgumentException;
 
 
 
@@ -428,6 +429,9 @@ public final class CoverView extends View implements Handler.Callback {
 				velocityTracker.computeCurrentVelocity(1000); // report velocity in pixels-per-second, as assumed by snap-velocity and co.
 				final int velocityX = (int) velocityTracker.getXVelocity();
 				final int velocityY = (int) velocityTracker.getYVelocity();
+					if (velocityTracker != null) {
+						velocityTracker.recycle();
+					}
 				mVelocityTracker.recycle();
 				mVelocityTracker = null;
 

@@ -36,6 +36,20 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import android.os.Environment;
+import java.util.ArrayList;
+import java.io.InputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import android.provider.MediaStore;
+import java.io.ObjectInputStream;
+import android.content.ContentValues;
+import android.os.Build;
+import java.io.File;
+import java.io.Serializable;
+import android.util.Log;
+import android.database.Cursor;
 
 public class MediaLibrary  {
 
@@ -529,6 +543,8 @@ public class MediaLibrary  {
 	 */
 	public static void movePlaylistItem(Context context, long from, long to) {
 		long fromPos, toPos, playlistId;
+		long toPos;
+		long playlistId;
 
 		String[] projection = { MediaLibrary.PlaylistSongColumns.POSITION, MediaLibrary.PlaylistSongColumns.PLAYLIST_ID };
 		String selection = MediaLibrary.PlaylistSongColumns._ID+"=";
@@ -539,6 +555,9 @@ public class MediaLibrary  {
 		fromPos = cursor.getLong(0);
 		playlistId = cursor.getLong(1);
 		cursor.close();
+		if (cursor != null) {
+			cursor.close();
+		}
 
 		// Get position of the target item
 		cursor = queryLibrary(context, MediaLibrary.TABLE_PLAYLISTS_SONGS, projection, selection+Long.toString(to), null, null);
