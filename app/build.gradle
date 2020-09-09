@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'tqrg.leafactor.ci'
 
 android {
     lintOptions {
